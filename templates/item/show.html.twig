@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.record_view'|trans({'%id%': item.id|default('')}) }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.record_view'|trans({'%id%': item.id|default('')}) }}</h1>
+    {% if item is defined and item|length %}
+        <dl class="dl-horizontal">
+            <dt>{{ 'label.id'|trans }}</dt>
+            <dd>{{ item.id }}</dd>
+            <dt>{{ 'label.title'|trans }}</dt>
+            <dd>{{ item.title }}</dd>
+            <dt>{{ 'label.author'|trans }}</dt>
+            <dd>{{  item.title }}</dd>
+            <dt>{{ 'label.addTime'|trans }}</dt>
+            <dd>{{ item.addTime|format_date('long') }}</dd>
+            <dd>{{ 'label.category'|trans }}</dd>
+            <dd>{{ item.category.name }}</dd>
+            <dd>{{ 'label.quantity'|trans }}</dd>
+            <dd>{{ IsAvailable.item.quantity }}</dd>
+
+        </dl>
+        <p>
+            <a href="{{ url('item_index') }}" title="{{ 'action.back_to_list'|trans }}">
+                {{ 'action.back_to_list'|trans }}
+            </a>
+        </p>
+    {% else %}
+        <p>
+            {{ 'message.record_not_found'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}
